@@ -1,5 +1,7 @@
 package io.github.jonathan5c.clientes.dominio;
 
+import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
+
 import java.util.UUID;
 
 public class Cliente {
@@ -7,7 +9,7 @@ public class Cliente {
     private UUID codigoCliente;
     private String nome;
     private String cpf;
-    private String sexo;
+    private TipoSexo sexo;
     private byte[] foto;
 
     public Cliente() {
@@ -38,11 +40,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getSexo() {
+    public TipoSexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(TipoSexo sexo) {
         this.sexo = sexo;
     }
 
