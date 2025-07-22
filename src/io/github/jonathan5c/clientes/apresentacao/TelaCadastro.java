@@ -1,8 +1,11 @@
 package io.github.jonathan5c.clientes.apresentacao;
 
+import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame {
 
@@ -12,6 +15,7 @@ public class TelaCadastro extends JFrame {
     private JTextField campoNome;
     private JTextField campoCpf;
     private JComboBox<TipoSexo> campoSexo;
+    private JButton botaoSalvar;
 
     public TelaCadastro() {
         construirTela();
@@ -61,10 +65,31 @@ public class TelaCadastro extends JFrame {
     }
 
     private void adicionarBotao() {
+        botaoSalvar = new JButton("Salvar");
+        botaoSalvar.setBounds(20,160,100,20);
 
+        ActionListener acaoBotaoSalvar = this.botaoSalvarActionListener();
+        botaoSalvar.addActionListener(acaoBotaoSalvar);
+
+        getContentPane().add(botaoSalvar);
     }
 
     private void adicionarComponenteFoto() {
 
+    }
+
+    private ActionListener botaoSalvarActionListener(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cliente cliente = new Cliente();
+
+                cliente.setNome(campoNome.getText());
+                cliente.setCpf(campoCpf.getText());
+                cliente.setSexo( (TipoSexo) campoSexo.getSelectedItem());
+
+                JOptionPane.showMessageDialog(null, cliente);
+            }
+        };
     }
 }
