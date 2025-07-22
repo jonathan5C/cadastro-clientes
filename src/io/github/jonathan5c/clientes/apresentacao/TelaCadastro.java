@@ -2,6 +2,8 @@ package io.github.jonathan5c.clientes.apresentacao;
 
 import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
+import io.github.jonathan5c.clientes.servico.Cadastro;
+import io.github.jonathan5c.clientes.servico.LogicaCadastroClienteFake;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -88,7 +90,8 @@ public class TelaCadastro extends JFrame {
                 cliente.setCpf(campoCpf.getText());
                 cliente.setSexo( (TipoSexo) campoSexo.getSelectedItem());
 
-                JOptionPane.showMessageDialog(null, cliente);
+                Cadastro<Cliente> cadastroCliente = new LogicaCadastroClienteFake();
+                cadastroCliente.salvar(cliente);
             }
         };
     }
