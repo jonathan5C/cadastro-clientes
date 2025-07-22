@@ -74,4 +74,15 @@ public class Cliente {
         result = 31 * result + sexo.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente [" +
+                "codigoCliente=" + codigoCliente +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", sexo=" + sexo +
+                ", foto=" + Arrays.toString(foto) +
+                ']';
+    }
 }
