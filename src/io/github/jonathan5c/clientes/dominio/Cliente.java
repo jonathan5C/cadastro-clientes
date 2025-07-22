@@ -2,6 +2,8 @@ package io.github.jonathan5c.clientes.dominio;
 
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Cliente {
@@ -54,5 +56,22 @@ public class Cliente {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cliente cliente = (Cliente) o;
+        return codigoCliente.equals(cliente.codigoCliente) && nome.equals(cliente.nome) && cpf.equals(cliente.cpf) && sexo == cliente.sexo;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = codigoCliente.hashCode();
+        result = 31 * result + nome.hashCode();
+        result = 31 * result + cpf.hashCode();
+        result = 31 * result + sexo.hashCode();
+        return result;
     }
 }
