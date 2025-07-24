@@ -3,10 +3,9 @@ package io.github.jonathan5c.clientes.dominio;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.UUID;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 
     private UUID codigoCliente;
     private String nome;
@@ -84,5 +83,28 @@ public class Cliente {
                 ", sexo=" + sexo +
                 ", foto=" + Arrays.toString(foto) +
                 ']';
+    }
+
+    /**
+     *
+     * @param o the object to be compared.
+     * @return
+     *
+     * 0 -> são iguais => 1==1
+     * 1 -> é maior => 2 > 1
+     * -1 -> é menor => 1 < 2
+     */
+
+    @Override
+    public int compareTo(Cliente o) {
+        int fator = this.nome.compareTo(o.getNome());
+
+        if (fator == 0) {
+            fator = this.sexo.equals(TipoSexo.F) ? -1 : 1;
+        }
+
+        return fator;
+
+        // Depois é usado da seguinte forma: [variavel].sort([variavel de instância]::compareTo); <=> isso vai fazer a ordenação
     }
 }
