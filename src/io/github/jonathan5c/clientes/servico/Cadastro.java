@@ -7,4 +7,5 @@ public interface Cadastro<TIPO> {
     TIPO buscar(UUID codigo);
     void deletar(UUID codigo);
     void atualizar(TIPO objetoAtualizar);
+    void imprimir();
 }

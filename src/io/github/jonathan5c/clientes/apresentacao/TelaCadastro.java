@@ -4,6 +4,7 @@ import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
 import io.github.jonathan5c.clientes.servico.Cadastro;
 import io.github.jonathan5c.clientes.servico.LogicaCadastroClienteFake;
+import io.github.jonathan5c.clientes.servico.LogicaCadastroMemoria;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,9 +19,11 @@ public class TelaCadastro extends JFrame {
     private JTextField campoCpf;
     private JComboBox<TipoSexo> campoSexo;
     private JButton botaoSalvar;
+    private Cadastro<Cliente> logicaCadastro;
 
     public TelaCadastro() {
         construirTela();
+        this.logicaCadastro = new LogicaCadastroMemoria();
     }
 
     private void construirTela() {
@@ -90,8 +93,9 @@ public class TelaCadastro extends JFrame {
                 cliente.setCpf(campoCpf.getText());
                 cliente.setSexo( (TipoSexo) campoSexo.getSelectedItem());
 
-                Cadastro<Cliente> cadastroCliente = new LogicaCadastroClienteFake();
-                cadastroCliente.salvar(cliente);
+                logicaCadastro.salvar(cliente);
+
+                logicaCadastro.imprimir();
             }
         };
     }
