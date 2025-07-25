@@ -1,6 +1,7 @@
 package io.github.jonathan5c.clientes.servico;
 
 import io.github.jonathan5c.clientes.dominio.Cliente;
+import io.github.jonathan5c.clientes.dominio.exception.CpfInvalidoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
     }
 
     @Override
-    public void salvar(Cliente cliente) {
+    public void salvar(Cliente cliente) throws CpfInvalidoException {
+        ValidadorCliente.validar(cliente);
         this.lista.add(cliente);
     }
 

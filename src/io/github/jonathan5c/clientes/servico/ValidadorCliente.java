@@ -17,7 +17,9 @@ public class ValidadorCliente {
 
     // Unchecked exceptions => No tempo de execução
     private static void validarDadosObrigatorios(Cliente cliente) {
-        if (cliente.getNome() == null && cliente.getCpf() == null && cliente.getSexo() == null) {
+        if ((cliente.getNome() == null || cliente.getNome().isBlank()) &&
+                (cliente.getCpf() == null || cliente.getCpf().isBlank()) &&
+                cliente.getSexo() == null) {
             throw new DadoObrigatorioException("Campo obrigatório!!");
         }
     }

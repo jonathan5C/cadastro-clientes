@@ -2,6 +2,7 @@ package io.github.jonathan5c.clientes.apresentacao;
 
 import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
+import io.github.jonathan5c.clientes.dominio.exception.CpfInvalidoException;
 import io.github.jonathan5c.clientes.servico.Cadastro;
 import io.github.jonathan5c.clientes.servico.LogicaCadastroClienteFake;
 import io.github.jonathan5c.clientes.servico.LogicaCadastroMemoria;
@@ -93,9 +94,14 @@ public class TelaCadastro extends JFrame {
                 cliente.setCpf(campoCpf.getText());
                 cliente.setSexo( (TipoSexo) campoSexo.getSelectedItem());
 
-                logicaCadastro.salvar(cliente);
-
-                logicaCadastro.imprimir();
+                try {
+                    logicaCadastro.salvar(cliente);
+                    logicaCadastro.imprimir();
+                } catch (CpfInvalidoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                } catch (Exception exp) {
+                    JOptionPane.showMessageDialog(null, exp.getMessage());
+                }
             }
         };
     }
