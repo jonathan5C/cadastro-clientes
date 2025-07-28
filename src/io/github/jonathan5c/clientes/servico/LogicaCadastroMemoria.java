@@ -2,6 +2,7 @@ package io.github.jonathan5c.clientes.servico;
 
 import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.exception.CpfInvalidoException;
+import io.github.jonathan5c.clientes.utilitario.GerenciadorArquivos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
     public void salvar(Cliente cliente) throws CpfInvalidoException {
         ValidadorCliente.validar(cliente);
         this.lista.add(cliente);
+        GerenciadorArquivos.persistirArquivo(cliente.getNome() + ".jpg", cliente.getFoto());
     }
 
     @Override
