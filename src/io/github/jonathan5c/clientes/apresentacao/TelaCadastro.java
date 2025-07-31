@@ -1,9 +1,12 @@
 package io.github.jonathan5c.clientes.apresentacao;
 
+import io.github.jonathan5c.clientes.dados.ClienteDAO;
+import io.github.jonathan5c.clientes.dados.FabricaConexoes;
 import io.github.jonathan5c.clientes.dominio.Cliente;
 import io.github.jonathan5c.clientes.dominio.enums.TipoSexo;
 import io.github.jonathan5c.clientes.dominio.exception.CpfInvalidoException;
 import io.github.jonathan5c.clientes.servico.Cadastro;
+import io.github.jonathan5c.clientes.servico.LogicaCadastroBD;
 import io.github.jonathan5c.clientes.servico.LogicaCadastroMemoria;
 import io.github.jonathan5c.clientes.utilitario.ConversorIconParaByteArray;
 
@@ -33,7 +36,8 @@ public class TelaCadastro extends JFrame {
 
     public TelaCadastro() {
         construirTela();
-        this.logicaCadastro = new LogicaCadastroMemoria();
+        var clienteDAO = new ClienteDAO(FabricaConexoes.criarConexao());
+        this.logicaCadastro = new LogicaCadastroBD(clienteDAO);
     }
 
     private void construirTela() {
